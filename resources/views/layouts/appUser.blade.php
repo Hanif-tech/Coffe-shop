@@ -34,6 +34,9 @@
   {{-- <link rel="shortcut icon" href="{{url('template/images/favicon.png')}}" /> --}}
 </head>
 <body>
+    @include('sweetalert::alert')
+
+
   <div class="container-scroller">
     <!-- partial:partials/_navbar.html -->
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
@@ -103,6 +106,7 @@
                 <ul class="nav flex-column sub-menu">
                   <li class="nav-item"> <a class="nav-link" href="{{route('data-produk.index')}}">Data Produk</a></li>
                   <li class="nav-item"> <a class="nav-link" href="{{route('gallery.index')}}">Gallery</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="{{route('kategori.index')}}">Kategori</a></li>
                 </ul>
               </div>
           </li>
@@ -175,13 +179,13 @@
   <script src="{{url('template/js/dashboard.js')}}"></script>
   <script src="{{url('template/js/Chart.roundedBarCharts.js')}}"></script>
   <!-- End custom js for this page-->
-  @stack('addon-script')
   <script>
       $('.nav').on('click','.nav-item', function(){
           $(this).addClass('active')
           console.log(this)
-      })
-  </script>
+        })
+        </script>
+        @stack('addon-script')
 </body>
 
 </html>

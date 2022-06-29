@@ -106,21 +106,22 @@
                                     Diterima
                                 </label></div>
                                 @endif
-                                @if($item->transaction_status == 'FAILED')
+                                @if($item->transaction_status == 'DIBATALKAN')
                                 <div class="float-end"><label class="label label-danger">
                                     Dibatalkan
                                 </label></div>
                                 @endif
                                 <span><strong>No. Pesanan : </strong></span> <span class="label">{{$item->invoice_number}}</span><br />
-                                Quantity : {{$item->transaction_detail->count()}}, Total Harga: Rp {{$item->transaction_total}} <br />
+                                Quantity :
+                                 {{$item->transaction_detail->sum('order_quantity')}}, Total Harga: Rp {{$item->transaction_total}} <br />
                                 <div class="button d-flex mt-2">
                                     <a href="{{route('my-order-detail',$item->id)}}" class="btn btn-info btn-sm me-2">Detail</a>
 
-                                    @if ($item->proof_of_transaction == null)
+                                    @if ($item->proof_of_transaction == null && $item->transaction_status != 'DIBATALKAN')
                                     <a href="{{route('checkout-payment-process-send',$item->id)}}" class="btn btn-success btn-sm me-2">Upload Bukti Pembayaran</a>
                                     @endif
 
-                                    @if ($item->transaction_status != 'PENDING' &&  $item->transaction_status != 'PROCESS' && $item->transaction_status != 'SUCCESS' && $item->transaction_status != 'FAILED' && $item->transaction_status != 'IN_CART')
+                                    @if ($item->transaction_status != 'PENDING' &&  $item->transaction_status != 'PROCESS' && $item->transaction_status != 'SUCCESS' && $item->transaction_status != 'FAILED' && $item->transaction_status != 'IN_CART' && $item->transaction_status != 'DIBATALKAN')
                                     <form action="{{route('my-order-done',$item->id)}}" method="POST">
                                         @csrf
                                         <button class="btn btn-sm btn-success">Diterima</button>

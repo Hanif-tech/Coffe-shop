@@ -28,6 +28,8 @@ class HomeController extends Controller
     public function index()
     {
         $products = Product::limit(4)->get();
+        // $transactionCheckInitial = Transaction::where('users_id',Auth::user()->id)->where('transaction_status','IN_CART')->first();
+        // dd($transactionCheckInitial);
 
         if ($products === 0) {
             return redirect()->to('/');
@@ -37,7 +39,10 @@ class HomeController extends Controller
             return redirect()->to('/');
         }
 
-        return view('pages.home', compact('products'));
+        return view('pages.home', [
+            'products' => $products,
+            // 'total_in_cart'
+        ]);
     }
     public function profil(){
         $user = User::find(Auth::user()->id);

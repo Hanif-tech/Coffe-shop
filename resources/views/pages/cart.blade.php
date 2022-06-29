@@ -28,7 +28,7 @@
                              </button>
                             </p>
                         <form action="{{route('remove',$item->id)}}" method="get">
-                            <button type="submit" class="btn-area"><i aria-hidden="true" class="fa fa-trash"></i> <span class="btn2">Remove</span></button>
+                            <button type="submit" class="btn-area show_confirm"><i aria-hidden="true" class="fa fa-trash"></i> <span class="btn2">Hapus</span></button>
                         </form>
 					</div>
 				</div>
@@ -88,6 +88,7 @@
 
 @push('addon-script')
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
 <script>
     $(document).ready(function(){
         const orderQuantity = document.querySelectorAll('#button-modal')
@@ -99,6 +100,24 @@
                 $('#order_quantity_update').val(order_quantity)
                 $('#editForm').attr('action', `/checkout/cart/update/${detail_id}`);
             }
+        });
+
+        $('.show_confirm').click(function(event) {
+        var form =  $(this).closest("form");
+        var name = $(this).data("name");
+        event.preventDefault();
+        swal({
+            title: `Anda yakin ingin menghapus produk ini dari keranjang?`,
+            text: "Jika iya kamu produk ini akan hilang selamanya!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+        .then((willDelete) => {
+        if (willDelete) {
+            form.submit();
+        }
+        });
         });
     })
 </script>

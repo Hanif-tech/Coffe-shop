@@ -22,7 +22,7 @@
         <div class="row py-4">
             <h2 class="text-center mb-3" style="color: rgb(61, 61, 61);font-size: 38px; font-weight: 600;">All Products</h2>
             <div class="row mb-3">
-                <div class="col-md-6">
+                <div class="col-md-8">
                     <!-- Control buttons -->
                     <div id="myBtnContainer">
                         <a href="{{route('all-product')}}" class="btn btn-filter {{request()->routeIs('all-product') ? 'active' : ''}}"> Show all</a>

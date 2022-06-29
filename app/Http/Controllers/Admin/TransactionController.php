@@ -153,4 +153,12 @@ class TransactionController extends Controller
 
         return $pdf->download('Laporan Bulanan');
      }
+     public function cancel($id){
+        $transaction = Transaction::find($id);
+        $transaction->transaction_status = 'DIBATALKAN';
+        $transaction->save();
+
+        return redirect()->route('transaction.index');
+
+     }
 }

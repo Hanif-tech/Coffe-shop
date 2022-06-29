@@ -56,6 +56,7 @@ Route::prefix('admin')
         Route::get('/data-pembeli', [App\Http\Controllers\Admin\BuyerDataController::class, 'index'] )->name('data-pembeli');
 
         Route::resource('transaction', '\App\Http\Controllers\Admin\TransactionController' );
+        Route::post('transaction/cancel/{id}', [App\Http\Controllers\Admin\TransactionController::class, 'cancel'] )->name('cancel');
         Route::get('transaction/expedition&resi/{id}', [App\Http\Controllers\Admin\TransactionController::class, 'showFormExpedition'] )->name('Form-Expedition');
         Route::get('transaction/detail/{id}', [App\Http\Controllers\Admin\TransactionController::class, 'transactionDetail'] )->name('transaction-detail');
         Route::post('transaction/expedition&resi/{id}/add', [App\Http\Controllers\Admin\TransactionController::class, 'storeExpedition'] )->name('Store-Form-Expedition');
@@ -68,8 +69,9 @@ Route::prefix('admin')
         Route::resource('review', '\App\Http\Controllers\Admin\ReviewController' );
 
 
-        Route::resource('data-produk', '\App\Http\Controllers\Admin\ProductController' );
+        Route::resource('data-produk', '\App\Http\Controllers\Admin\ProductController');
         Route::resource('gallery', '\App\Http\Controllers\Admin\GalleryController' );
+        Route::resource('kategori', '\App\Http\Controllers\Admin\CategoryProductController' );
 
         Route::get('/transaksi', function () {
             return view('pages.admin.transaksi');

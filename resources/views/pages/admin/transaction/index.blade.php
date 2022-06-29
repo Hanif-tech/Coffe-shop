@@ -51,11 +51,14 @@
               @if ($item->expedition == null && $item->transaction_status == 'PROCESS')
               <a href="{{route('Form-Expedition',$item->id)}}" class="btn btn-sm btn-primary"><i class="fa-solid fa-truck-fast"></i> <span>Resi</span></a>
               @else
-              <button disabled class="btn btn-sm btn-info"><i class="fa-solid fa-truck-fast"></i> <span>Resi</span></button>
+              <button disabled class="btn btn-sm btn-info ms-2"><i class="fa-solid fa-truck-fast "></i> <span>Resi</span></button>
               @endif
-
-              <a href="{{route('transaction-detail',$item->id)}}" class="btn btn-sm btn-success" ><i class="fa-solid fa-eye"></i></a>
-
+              <a href="{{route('transaction-detail',$item->id)}}" class="btn btn-sm btn-success ms-2" ><i class="fa-solid fa-eye"></i></a>
+              {{-- <a href="{{route('cancel',$item->id)}}" class="btn btn-sm btn-danger ms-2" title="Batalkan" ><i class="fa-solid fa-xmark "></i></a> --}}
+              <form action="{{route('cancel',$item->id)}}" method="POST">
+                @csrf
+                <button type="submit" class="btn btn-sm btn-danger ms-2"><i class="fa-solid fa-xmark "></i></button>
+            </form>
           </td>
         </tr>
         @endforeach

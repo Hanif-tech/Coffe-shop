@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\Transaction;
 use Carbon\Carbon;
 use App\Models\TransactionDetail;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class CheckoutController extends Controller
 {
@@ -71,6 +72,7 @@ class CheckoutController extends Controller
                 $transactionCheck->save();
             }
         }
+        Alert::success('Berhasil', 'Berhasil ditambahkan ke Keranjang');
         return redirect()->route('detail',$id);
     }
 
